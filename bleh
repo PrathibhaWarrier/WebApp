@@ -1,0 +1,45 @@
+// YourComponent.js
+import React, { useState, useEffect } from 'react';
+
+const YourComponent = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://your-django-api-endpoint');
+            const jsonData = await response.json();
+            setData(jsonData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    return (
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Column 1</th>
+                        <th>Column 2</th>
+                        {/* Add more columns based on your model fields */}
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map(item => (
+                        <tr key={item.id}>
+                            <td>{item.field1}</td>
+                            <td>{item.field2}</td>
+                            {/* Add more cells based on your model fields */}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
+};
+
+export default YourComponent;
