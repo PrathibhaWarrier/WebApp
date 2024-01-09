@@ -146,3 +146,165 @@ function BopFilter(props) {
 }
 
 export default BopFilter;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+import React, { useState } from "react";
+import './barcodecss.css'; 
+
+import {
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+} from "reactstrap";
+
+function BopFilter(props) {
+  const {
+    plant,
+    technology,
+    mainValving,
+    rod,
+    pt,
+    filterPlantCallback,
+    filterTechnologyCallback,
+    filterMainValvingCallback,
+    filterRodCallback,
+    filterPTCallback,
+  } = props;
+
+  const [selectedPlant, setSelectedPlant] = useState("");
+  const [selectedTechnology, setSelectedTechnology] = useState("");
+  const [selectedMainValving, setSelectedMainValving] = useState("");
+  const [selectedRod, setSelectedRod] = useState("");
+  const [selectedPT, setSelectedPT] = useState("");
+
+  const plantOptions = plant.map((val) => (
+    <DropdownItem
+      key={val}
+      href="#pablo"
+      onClick={(e) => {
+        e.preventDefault();
+        filterPlantCallback({ val });
+        setSelectedPlant(val);
+      }}
+    >
+      {val}
+    </DropdownItem>
+  ));
+
+  const technologyOptions = technology.map((val) => (
+    <DropdownItem
+      key={val}
+      href="#pablo"
+      onClick={(e) => {
+        e.preventDefault();
+        filterTechnologyCallback({ val });
+        setSelectedTechnology(val);
+      }}
+    >
+      {val}
+    </DropdownItem>
+  ));
+
+  const mainValvingOptions = mainValving.map((val) => (
+    <DropdownItem
+      key={val}
+      href="#pablo"
+      onClick={(e) => {
+        e.preventDefault();
+        filterMainValvingCallback({ val });
+        setSelectedMainValving(val);
+      }}
+    >
+      {val}
+    </DropdownItem>
+  ));
+
+  const rodOptions = rod.map((val) => (
+    <DropdownItem
+      key={val}
+      href="#pablo"
+      onClick={(e) => {
+        e.preventDefault();
+        filterRodCallback({ val });
+        setSelectedRod(val);
+      }}
+    >
+      {val}
+    </DropdownItem>
+  ));
+
+  const ptOptions = pt.map((val) => (
+    <DropdownItem
+      key={val}
+      href="#pablo"
+      onClick={(e) => {
+        e.preventDefault();
+        filterPTCallback({ val });
+        setSelectedPT(val);
+      }}
+    >
+      {val}
+    </DropdownItem>
+  ));
+
+  return (
+    <div className="MyDropdown">
+      <>
+        <UncontrolledDropdown>
+          <DropdownToggle caret color="secondary" type="button">
+            Plant
+          </DropdownToggle>
+          <DropdownMenu>{plantOptions}</DropdownMenu>
+        </UncontrolledDropdown>
+        <input type="text" value={selectedPlant} readOnly />
+
+        <UncontrolledDropdown>
+          <DropdownToggle caret color="secondary" type="button">
+            Technology
+          </DropdownToggle>
+          <DropdownMenu>{technologyOptions}</DropdownMenu>
+        </UncontrolledDropdown>
+        <input type="text" value={selectedTechnology} readOnly />
+
+        <UncontrolledDropdown>
+          <DropdownToggle caret color="secondary" type="button">
+            Main Valving
+          </DropdownToggle>
+          <DropdownMenu>{mainValvingOptions}</DropdownMenu>
+        </UncontrolledDropdown>
+        <input type="text" value={selectedMainValving} readOnly />
+
+        <UncontrolledDropdown>
+          <DropdownToggle caret color="secondary" type="button">
+            Rod
+          </DropdownToggle>
+          <DropdownMenu>{rodOptions}</DropdownMenu>
+        </UncontrolledDropdown>
+        <input type="text" value={selectedRod} readOnly />
+
+        <UncontrolledDropdown>
+          <DropdownToggle caret color="secondary" type="button">
+            PT
+          </DropdownToggle>
+          <DropdownMenu>{ptOptions}</DropdownMenu>
+        </UncontrolledDropdown>
+        <input type="text" value={selectedPT} readOnly />
+      </>
+    </div>
+  );
+}
+
+export default BopFilter;
