@@ -1,0 +1,68 @@
+import React, { useState } from "react";
+
+function UserProfile({
+  plant,
+  mainValving,
+  rod,
+  pt,
+  technology,
+  assemblyAreas, // Add assemblyAreas prop
+  selectedFilters,
+  filterPlantCallback,
+  filterMainValvingCallback,
+  filterRodCallback,
+  filterPTCallback,
+  filterTechnologyCallback,
+  filterAssemblyAreaCallback, // Add filterAssemblyAreaCallback prop
+}) {
+  const [displayedFilters, setDisplayedFilters] = useState("");
+
+  const updateDisplayedFilters = () => {
+    const filters = [];
+    if (selectedFilters.plant) filters.push(`Plant: ${selectedFilters.plant}`);
+    if (selectedFilters.mainValving) filters.push(`Main Valving: ${selectedFilters.mainValving}`);
+    if (selectedFilters.rod) filters.push(`Rod: ${selectedFilters.rod}`);
+    if (selectedFilters.pt) filters.push(`PT: ${selectedFilters.pt}`);
+    if (selectedFilters.technology) filters.push(`Technology: ${selectedFilters.technology}`);
+    if (selectedFilters.assemblyArea) filters.push(`Assembly Area: ${selectedFilters.assemblyArea}`);
+    setDisplayedFilters(filters.join(", "));
+  };
+
+  // Update displayed filters whenever selected filters change
+  React.useEffect(() => {
+    updateDisplayedFilters();
+  }, [selectedFilters]);
+
+  return (
+    <div>
+      <label>Plant:</label>
+      <select value={selectedFilters.plant} onChange={(e) => filterPlantCallback({ val: e.target.value })}>
+        <option value="">All</option>
+        {plant.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+
+      {/* Similar code for other dropdowns */}
+
+      <label>Assembly Area:</label>
+      <select value={selectedFilters.assemblyArea} onChange={(e) => filterAssemblyAreaCallback({ val: e.target.value })}>
+        <option value="">All</option>
+        {assemblyAreas.map((item) => (
+          <option key={item} value={item}>
+            {item}
+          </option>
+        ))}
+      </select>
+
+      <div>
+        <label>Selected Filters:</label>
+        <input type="text" value={displayedFilters} readOnly />
+      </div>
+    </div>
+  );
+}
+
+export default UserProfile;
