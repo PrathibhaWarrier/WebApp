@@ -1,0 +1,22 @@
+.MyDropdown {
+  display: flex;
+  justify-content: space-between; /* This will space the elements equally on the horizontal axis */
+}
+
+.MyDropdown > UncontrolledDropdown {
+  width: 48%; /* Adjust the width as needed */
+}
+
+.MyDropdown > UncontrolledDropdown:nth-child(1),
+.MyDropdown > UncontrolledDropdown:nth-child(2),
+.MyDropdown > UncontrolledDropdown:nth-child(3),
+.MyDropdown > UncontrolledDropdown:nth-child(4) {
+  order: 1; /* Display the first 4 elements on the left */
+}
+
+.MyDropdown > UncontrolledDropdown:nth-child(5),
+.MyDropdown > UncontrolledDropdown:nth-child(6),
+.MyDropdown > UncontrolledDropdown:nth-child(7),
+.MyDropdown > UncontrolledDropdown:nth-child(8) {
+  order: 2; /* Display the next 4 elements on the right */
+}
