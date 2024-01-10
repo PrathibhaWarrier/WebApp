@@ -1,14 +1,15 @@
-// LogoButton.js
+// YourComponent.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logoImage from './path/to/your/logo.png'; // Import your logo image
+import LogoButton from './LogoButton'; // Import the LogoButton component
 
-const LogoButton = ({ to, alt, className }) => {
+const YourComponent = () => {
   return (
-    <Link to={to} className={className}>
-      <img src={logoImage} alt={alt} />
-    </Link>
+    <div>
+      {/* Other content */}
+      <LogoButton to="/target-page" alt="Logo Alt Text" className="your-logo-button" />
+    </div>
   );
 };
 
-export default LogoButton;
+export default YourComponent;
+
